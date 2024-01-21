@@ -1,0 +1,3 @@
+node_modules/
+/kwork-api-storage
+.env
