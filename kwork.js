@@ -28,7 +28,7 @@ async function getOrders() {
         });
 
         const html = await response.text();
-        if(!html.includes(username)) return console.log(`Не получилось авторизоваться как ${username}`)
+        if(!html.includes(username)) return bot.telegram.sendMessage(chatIdToSendMessage, `Не получилось авторизоваться как ${username}`)
 
         const $ = cheerio.load(html);
 
