@@ -4,8 +4,9 @@ require("dotenv").config(path.join(__dirname, ".env"))
 const { Telegraf } = require("telegraf")
 const bot = new Telegraf(process.env.botToken)
 const chatIdToSendMessage = 1386450473;
-const username = "Jmail"
+const kworkUsername = "Jmail"
 const fetch = require("node-fetch");
+var { decode } = require("html-entities")
 const cheerio = require("cheerio");
 
 setInterval(async() => {
@@ -28,7 +29,7 @@ async function getOrders() {
         });
 
         const html = await response.text();
-        if(!html.includes(username)) return bot.telegram.sendMessage(chatIdToSendMessage, `Не получилось авторизоваться как ${username}`)
+        if(!html.includes(kworkUsername)) return bot.telegram.sendMessage(chatIdToSendMessage, `Не получилось авторизоваться как ${kworkUsername}`)
 
         const $ = cheerio.load(html);
 
@@ -62,7 +63,11 @@ function extractWantsArraySubstring(content) {
 }
 
 function getInterestingOrders(orders) {
-    orders.map(order => order.text = `${order.name}\n${order.description}`.toLowerCase())
+    orders.map(order => {
+        order.name = decode(order.name)
+        order.description = decode(order.description)
+        order.text = `${order.name}\n${order.description}`.toLowerCase()
+    })
     var keywords = ["бот", "bot", "telegram", "телеграм", "vpn", "впн", "node", "нода", "js", "javascript", "java script", "бекенд", "бэкэнд", "бэкенд", "бекэнд", "back-end", "backend", "webhook", "вебхук", "вэбхук", "мойсклад", "moysklad", "мой склад", "moy sklad", "sheets", "таблиц"]
     
     const interestingOrders = []
