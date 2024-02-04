@@ -68,7 +68,7 @@ function getInterestingOrders(orders) {
         order.description = decode(order.description)
         order.text = `${order.name}\n${order.description}`.toLowerCase()
     })
-    var keywords = ["бот", "bot", "telegram", "телеграм", "vpn", "впн", "node", "нода", "js", "javascript", "java script", "бекенд", "бэкэнд", "бэкенд", "бекэнд", "back-end", "backend", "webhook", "вебхук", "вэбхук", "мойсклад", "moysklad", "мой склад", "moy sklad", "sheets", "таблиц"]
+    var keywords = ["бот", "bot", "чат-бот", "chat-bot", "telegram", "телеграм", "vpn", "впн", "node", "нода", "js", "javascript", "java script", "бекенд", "бэкэнд", "бэкенд", "бекэнд", "back-end", "backend", "webhook", "вебхук", "вэбхук", "мойсклад", "moysklad", "мой склад", "moy sklad", "sheets", "таблиц"]
     
     const interestingOrders = []
 
